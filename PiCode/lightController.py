@@ -144,10 +144,13 @@ def ballDown(strip):
 
     fadeColor(strip, [255,0,0])
 
-def ballDown1(strip):
+def ballDown1(strip, origin):
     wait_ms = 10
-    pointer1 = 0
-    pointer2 = strip.numPixels() - 1
+    pointer1 = origin
+    pointer2 = origin - 1
+
+    if pointer2 < 0:
+        pointer2 == strip.numPixels() - 1
 
     stripBrightness = {}
     for i in range(strip.numPixels()):
@@ -220,7 +223,7 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     while True:
-        ballDown1(strip)
+        ballDown1(strip, 60)
         time.sleep(0.5)
 
     
