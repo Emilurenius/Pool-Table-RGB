@@ -162,7 +162,7 @@ def ballDown1(strip):
     while True:
         for i in range(len(stripBrightness)):
             if stripBrightness[i]["active"] and stripBrightness[i]["up"]:
-                stripBrightness[i]["val"] += 100
+                stripBrightness[i]["val"] += 400
                 if stripBrightness[i ]["val"] > 1000:
                     stripBrightness[i]["val"] = 1000
 
