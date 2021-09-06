@@ -122,9 +122,9 @@ if __name__ == '__main__':
     repeats = 5
     while repeats > 0:
         solidColor(strip, Color(0, 0, 0))
-        time.sleep(0.1)
+        time.sleep(0.3)
         solidColor(strip, Color(255, 255, 255))
-        time.sleep(0.1)
+        time.sleep(0.3)
         repeats -= 1
 
     
