@@ -14,6 +14,12 @@ LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
+def unpackRGB(color): # Change 24 bit color into 8 bit RGB
+    r = 0xFF & (color >> 16)
+    g = 0xFF & (color >> 8)
+    b = 0xFF & color
+    return [r, g, b]
+
 def diff(num1, num2):
     if num1 > num2:
         diff = num1 - num2
