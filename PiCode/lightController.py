@@ -68,9 +68,6 @@ def colorBubbles(strip):
     stripBrightness = {}
 
     for i in range(strip.numPixels()):
-        stripBrightness = {}
-
-    for i in range(strip.numPixels()):
         stripBrightness[i + 1] = {
             "val": 0,
             "up": True,
@@ -146,6 +143,30 @@ def ballDown(strip):
         repeats -= 1
 
     fadeColor(strip, [255,0,0])
+
+def ballDown1(strip):
+    pointer1 = 0
+    pointer2 = strip.numPixels() - 1
+
+    stripBrightness = {}
+    for i in range(strip.numPixels()):
+        stripBrightness[i + 1] = {
+            "val": 0,
+            "up": True,
+            "active": False
+        }
+    
+    stripBrightness[pointer1]["active"] = True
+    stripBrightness[pointer2]["active"] = True
+
+    for i in range(len(stripBrightness)):
+        if stripBrightness[i]["active"] == True:
+            strip.setPixelColor(i, Color(255,255,255))
+    
+    strip.show()
+
+
+
 
 if __name__ == '__main__':
     # Process arguments
