@@ -74,6 +74,7 @@ def colorBubbles(strip):
                         stripBrightness[1]["active"] = True
                     elif i >= strip.numPixels() - 1 and stripBrightness[i + 1]["forwards"] == False:
                         stripBrightness[strip.numPixels() - 1]["active"] = True
+                        stripBrightness[strip.numPixels() - 1]["forwards"] = False
 
             else: # Deactivate pixel
                 stripBrightness[i + 1]["active"] = False
