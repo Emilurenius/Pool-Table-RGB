@@ -175,6 +175,7 @@ def ballDown1(strip, origin):
             animationComplete = True
 
         counter += 1
+        
         for i in range(len(stripBrightness)):
             if stripBrightness[i]["active"] and stripBrightness[i]["up"]:
                 stillActive = True
@@ -198,6 +199,7 @@ def ballDown1(strip, origin):
                 if stripBrightness[i ]["val"] < 0:
                     stripBrightness[i]["val"] = 0
                     stripBrightness[i]["active"] = False
+                    stripBrightness[i]["up"] = True
 
 
 
