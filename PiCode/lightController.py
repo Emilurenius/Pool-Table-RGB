@@ -20,6 +20,56 @@ def solidColor(strip, color):
         strip.setPixelColor(i, color)
     strip.show()
 
+def colorBubbles(strip): 
+    stripBrightness = {}
+
+    for i in range(strip.numPixels()):
+        stripBrightness[i + 1] = {
+            "val": 0,
+            "up": True,
+            "active": False
+        }
+    
+    while True:
+        wait_ms = 50
+
+        noneActive = True
+        for i in range(len(stripBrightness)):
+            if stripBrightness[i + 1]["active"] == True:
+                noneActive = False
+                break
+        if noneActive:
+            stripBrightness[1]["active"] = True
+
+        for i in range(len(stripBrightness)):
+            # Fade up
+            if stripBrightness[i + 1]["up"] == True and stripBrightness[i + 1]["val"] < 1000 and stripBrightness[i + 1]["active"] == True:
+                stripBrightness[i + 1]["val"] += 400
+                if stripBrightness[i + 1]["val"] > 1000:
+                    stripBrightness[i + 1]["val"] = 1000
+
+            # Fade down
+            elif stripBrightness[i + 1]["active"] == True and stripBrightness[i + 1]["val"] > 0:
+                stripBrightness[i + 1]["up"] = False
+                stripBrightness[i + 1]["val"] -= 100
+                if stripBrightness[i + 1]["val"] < 0:
+                    stripBrightness[i + 1]["val"] = 0
+
+            else: # Deactivate pixel
+                stripBrightness[i + 1]["active"] = False
+
+            if stripBrightness[i + 1]["val"] == 0 and stripBrightness[i + 1]["up"] == False: # Reset pixel
+                stripBrightness[i + 1]["up"] = True
+                stripBrightness[i + 1]["active"] = False
+
+            if stripBrightness[i + 1]["val"] > 999 and i < len(stripBrightness) - 1: # Activate next pixel
+                stripBrightness[i + 2]["active"] = True
+
+            color = Color(int(float(255) * float(stripBrightness[i + 1]["val"]) / 1000), int(float(255) * float(stripBrightness[i + 1]["val"]) / 1000), int(float(255) * float(stripBrightness[i + 1]["val"]) / 1000))
+            strip.setPixelColor(i, color)
+        strip.show()
+        time.sleep(wait_ms/1000.0)
+
 if __name__ == '__main__':
     # Process arguments
     parser = argparse.ArgumentParser()
@@ -36,6 +86,6 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     while True:
-        solidColor(strip, Color(255,255,255))
+        colorBubbles(strip)
 
     
