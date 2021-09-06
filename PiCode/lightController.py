@@ -27,7 +27,7 @@ def colorBubbles(strip):
         stripBrightness[i + 1] = {
             "val": 0,
             "up": True,
-            "forwards": True,
+            "forwards": False,
             "active": False
         }
 
