@@ -167,7 +167,7 @@ def ballDown1(strip):
                     stripBrightness[i]["val"] = 1000
                     stripBrightness[i]["up"] = False
 
-                    if i < len(stripBrightness):
+                    if i < len(stripBrightness) - 1:
                         stripBrightness[i + 1]["active"] = True
 
             elif stripBrightness[i]["active"] and stripBrightness[i]["up"] == False:
