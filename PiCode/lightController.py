@@ -170,6 +170,7 @@ def ballDown1(strip):
             strip.setPixelColor(i, color)
         
         strip.show()
+        time.sleep(50/1000)
 
 
 
