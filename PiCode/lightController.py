@@ -180,7 +180,7 @@ def ballDown1(strip):
                         stripBrightness[i + 1]["active"] = True
 
             elif stripBrightness[i]["active"] and stripBrightness[i]["up"] == False and animationComplete == True:
-                stripBrightness[i]["val"] -= 100
+                stripBrightness[i]["val"] -= 400
                 if stripBrightness[i ]["val"] < 0:
                     stripBrightness[i]["val"] = 0
                     stripBrightness[i]["active"] = False
