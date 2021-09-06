@@ -100,6 +100,8 @@ def ballDown(strip):
         if diff(pointer1, pointer2) < 1:
             print("Done")
             break
+        else:
+            print(diff(pointer1, pointer2))
 
 
 if __name__ == '__main__':
