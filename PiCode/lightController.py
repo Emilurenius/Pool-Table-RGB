@@ -235,7 +235,7 @@ if __name__ == '__main__':
     while True:
         ballsDown = requests.get(f"{serverAddress}/getBallsDown").json()
         if "1" in ballsDown:
-            ballDown1(strip, 5)
+            ballDown1(strip, 90)
         time.sleep(0.1)
 
     
