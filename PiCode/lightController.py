@@ -35,7 +35,6 @@ if __name__ == '__main__':
     if not args.clear:
         print('Use "-c" argument to clear LEDs on exit')
 
-    while True:
-        solidColor(strip, Color(50,50,50))
+    solidColor(strip, Color(50,50,50))
 
     
