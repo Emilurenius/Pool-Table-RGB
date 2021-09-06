@@ -118,5 +118,6 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     ballDown(strip)
+    solidColor(strip, Color(0, 0, 0))
 
     
