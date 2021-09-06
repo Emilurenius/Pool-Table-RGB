@@ -22,6 +22,36 @@ def diff(num1, num2):
 
     return diff
 
+def fadeColor(strip, newColor, wait_ms=10, changePerTick=1):
+    oldColor = unpackRGB(strip.getPixelColor(0))
+    while True:
+        if newColor == oldColor:
+            break
+
+        if oldColor[0] == newColor[0]: # Change red channel
+            oldColor[0] = newColor[0]
+        elif oldColor[0] < newColor[0]:
+            oldColor[0] += changePerTick
+        elif oldColor[0] > newColor[0]:
+            oldColor[0] -= changePerTick
+        
+        if oldColor[1] == newColor[1]: # Change green channel
+            oldColor[1] = newColor[1]
+        elif oldColor[1] < newColor[1]:
+            oldColor[1] += changePerTick
+        elif oldColor[1] > newColor[1]:
+            oldColor[1] -= changePerTick
+            
+        if oldColor[2] == newColor[2]: # Change blue channel
+            oldColor[2] = newColor[2]
+        elif oldColor[2] < newColor[2]:
+            oldColor[2] += changePerTick
+        elif oldColor[2] > newColor[2]:
+            oldColor[2] -= changePerTick
+
+        solidColor(strip, Color(oldColor[0], oldColor[1], oldColor[2]))
+        time.sleep(wait_ms / 1000) # Wait specified amount in delayMS
+
 def solidColor(strip, color):
     # Displays a single solid color untill told otherwise:
     for i in range(strip.numPixels()): # Assign color to every pixel
@@ -108,6 +138,8 @@ def ballDown(strip):
         solidColor(strip, Color(255, 255, 255))
         time.sleep(0.3)
         repeats -= 1
+
+    fadeColor(strip, Color(255, 0, 0))
 
 if __name__ == '__main__':
     # Process arguments
