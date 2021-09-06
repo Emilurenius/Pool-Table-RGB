@@ -157,7 +157,7 @@ def ballDown1(strip):
         }
     
     stripBrightness[pointer1]["active"] = True
-    stripBrightness[pointer2]["active"] = True
+    #stripBrightness[pointer2]["active"] = True
 
     while True:
         for i in range(len(stripBrightness)):
@@ -165,6 +165,16 @@ def ballDown1(strip):
                 stripBrightness[i]["val"] += 400
                 if stripBrightness[i ]["val"] > 1000:
                     stripBrightness[i]["val"] = 1000
+                    stripBrightness[i]["up"] = False
+                    stripBrightness[i + 1]["active"] = True
+
+            elif stripBrightness[i]["active"] and stripBrightness[i]["up"] == False:
+                stripBrightness[i]["val"] -= 400
+                if stripBrightness[i ]["val"] < 0:
+                    stripBrightness[i]["val"] = 0
+                    stripBrightness[i]["active"] = False
+
+
 
             color = Color(int(float(255) * float(stripBrightness[i]["val"]) / 1000), int(float(255) * float(stripBrightness[i]["val"]) / 1000), int(float(255) * float(stripBrightness[i]["val"]) / 1000))
             strip.setPixelColor(i, color)
