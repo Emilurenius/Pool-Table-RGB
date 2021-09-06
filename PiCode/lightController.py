@@ -24,19 +24,27 @@ def colorBubbles(strip):
     stripBrightness = {}
 
     for i in range(strip.numPixels()):
+        stripBrightness = {}
+
+    for i in range(strip.numPixels()):
         stripBrightness[i + 1] = {
             "val": 0,
             "up": True,
-            "forwards": True,
             "active": False
         }
-
+    
     while True:
         wait_ms = 50
 
+        noneActive = True
         for i in range(len(stripBrightness)):
-            #print(f"{i} : {strip.numPixels()}")
-            
+            if stripBrightness[i + 1]["active"] == True:
+                noneActive = False
+                break
+        if noneActive:
+            stripBrightness[1]["active"] = True
+
+        for i in range(len(stripBrightness)):
             # Fade up
             if stripBrightness[i + 1]["up"] == True and stripBrightness[i + 1]["val"] < 1000 and stripBrightness[i + 1]["active"] == True:
                 stripBrightness[i + 1]["val"] += 400
@@ -50,10 +58,6 @@ def colorBubbles(strip):
                 if stripBrightness[i + 1]["val"] < 0:
                     stripBrightness[i + 1]["val"] = 0
 
-                if i >= strip.numPixels() - 1:
-                    stripBrightness[1]["active"] = True
-                    print("It's working")
-
             else: # Deactivate pixel
                 stripBrightness[i + 1]["active"] = False
 
@@ -62,11 +66,7 @@ def colorBubbles(strip):
                 stripBrightness[i + 1]["active"] = False
 
             if stripBrightness[i + 1]["val"] > 999 and i < len(stripBrightness) - 1: # Activate next pixel
-                if stripBrightness[i + 1]["forwards"]:
-                    stripBrightness[i + 2]["active"] = True
-                else:
-                    stripBrightness[i - 2]["active"] = True
-
+                stripBrightness[i + 2]["active"] = True
 
             color = Color(int(float(255) * float(stripBrightness[i + 1]["val"]) / 1000), int(float(255) * float(stripBrightness[i + 1]["val"]) / 1000), int(float(255) * float(stripBrightness[i + 1]["val"]) / 1000))
             strip.setPixelColor(i, color)
