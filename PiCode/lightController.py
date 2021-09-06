@@ -197,6 +197,10 @@ def ballDown1(strip, origin):
             elif stripBrightness[i]["active"] and stripBrightness[i]["up"] == False:
                 if i >= strip.numPixels() - 1 and stripBrightness[i]["forwards"]:
                     stripBrightness[0]["active"] = True
+                elif i >= strip.numPixels() - 1 and stripBrightness[i]["forwards"] == False:
+                    stripBrightness[0]["active"] = True
+                    stripBrightness[0]["forwards"] = False
+                    
                 stillActive = True
                 stripBrightness[i]["val"] -= 50
                 if stripBrightness[i ]["val"] < 0:
@@ -235,7 +239,7 @@ if __name__ == '__main__':
     while True:
         ballsDown = requests.get(f"{serverAddress}/getBallsDown").json()
         if "1" in ballsDown:
-            ballDown1(strip, 90)
+            ballDown1(strip, 10)
         time.sleep(0.1)
 
     
