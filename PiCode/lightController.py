@@ -5,7 +5,7 @@ import time, json, os, random, datetime, argparse, requests
 from rpi_ws281x import *
 
 # LED strip configuration:
-LED_COUNT      = 10     # Number of LED pixels.
+LED_COUNT      = 144     # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
 #LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
 LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
@@ -36,6 +36,6 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     while True:
-        solidColor(strip, Color(50,50,50))
+        solidColor(strip, Color(10,10,10))
 
     
