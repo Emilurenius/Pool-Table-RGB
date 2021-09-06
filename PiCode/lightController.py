@@ -97,7 +97,7 @@ def ballDown(strip):
             break
         else:
             print(diff(pointer1, pointer2))
-        time.sleep(0.5)
+        time.sleep(0.05)
         pointer1 += 1
         pointer2 -= 1
 
