@@ -145,6 +145,7 @@ def ballDown(strip):
     fadeColor(strip, [255,0,0])
 
 def ballDown1(strip):
+    wait_ms = 10
     pointer1 = 0
     pointer2 = strip.numPixels() - 1
 
@@ -160,6 +161,7 @@ def ballDown1(strip):
     #stripBrightness[pointer2]["active"] = True
 
     while True:
+        wait_ms += 1
         for i in range(len(stripBrightness)):
             if stripBrightness[i]["active"] and stripBrightness[i]["up"]:
                 stripBrightness[i]["val"] += 400
@@ -182,7 +184,7 @@ def ballDown1(strip):
             strip.setPixelColor(i, color)
         
         strip.show()
-        time.sleep(50/1000)
+        time.sleep(wait_ms/1000)
 
 
 
