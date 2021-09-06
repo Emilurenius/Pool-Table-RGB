@@ -165,12 +165,14 @@ def ballDown1(strip):
     counter = 0
     animationComplete = False
     while True:
+        stillActive = False
         if counter >= 30:
             animationComplete = True
 
         counter += 1
         for i in range(len(stripBrightness)):
             if stripBrightness[i]["active"] and stripBrightness[i]["up"]:
+                stillActive = True
                 stripBrightness[i]["val"] += 400
                 if stripBrightness[i ]["val"] > 1000:
                     stripBrightness[i]["val"] = 1000
@@ -183,6 +185,7 @@ def ballDown1(strip):
                         stripBrightness[i - 1]["forwards"] = False
 
             elif stripBrightness[i]["active"] and stripBrightness[i]["up"] == False:
+                stillActive = True
                 stripBrightness[i]["val"] -= 50
                 if stripBrightness[i ]["val"] < 0:
                     stripBrightness[i]["val"] = 0
@@ -194,6 +197,8 @@ def ballDown1(strip):
             strip.setPixelColor(i, color)
         
         strip.show()
+        if stillActive == False:
+            break
         time.sleep(wait_ms/1000)
 
 
