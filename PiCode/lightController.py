@@ -145,7 +145,7 @@ def ballDown(strip):
         time.sleep(0.3)
         repeats -= 1
 
-    fadeColor(strip, Color(255, 0, 0))
+    fadeColor(strip, [255,0,0])
 
 if __name__ == '__main__':
     # Process arguments
