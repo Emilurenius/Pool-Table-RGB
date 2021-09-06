@@ -163,6 +163,8 @@ def ballDown1(strip):
         for i in range(len(stripBrightness)):
             if stripBrightness[i]["active"] and stripBrightness[i]["up"]:
                 stripBrightness[i]["val"] += 100
+                if stripBrightness[i ]["val"] > 1000:
+                    stripBrightness[i]["val"] = 1000
 
             color = Color(int(float(255) * float(stripBrightness[i]["val"]) / 1000), int(float(255) * float(stripBrightness[i]["val"]) / 1000), int(float(255) * float(stripBrightness[i]["val"]) / 1000))
             strip.setPixelColor(i, color)
