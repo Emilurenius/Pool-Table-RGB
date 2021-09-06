@@ -52,6 +52,10 @@ def colorBubbles(strip):
                 if stripBrightness[i + 1]["val"] < 0:
                     stripBrightness[i + 1]["val"] = 0
 
+                if i >= strip.numPixels() - 1:
+                    stripBrightness[1]["active"] = True
+                    print("It's working")
+
             else: # Deactivate pixel
                 stripBrightness[i + 1]["active"] = False
 
@@ -60,10 +64,7 @@ def colorBubbles(strip):
                 stripBrightness[i + 1]["active"] = False
 
             if stripBrightness[i + 1]["val"] > 999 and i < len(stripBrightness) - 1: # Activate next pixel
-                if i >= strip.numPixels() - 1:
-                    stripBrightness[1]["active"] = True
-                    print("It's working")
-                elif stripBrightness[i + 1]["forwards"]:
+                if stripBrightness[i + 1]["forwards"]:
                     stripBrightness[i + 2]["active"] = True
                 else:
                     stripBrightness[i - 2]["active"] = True
