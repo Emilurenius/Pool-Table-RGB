@@ -154,18 +154,20 @@ def ballDown1(strip):
         stripBrightness[i] = {
             "val": 0,
             "up": True,
+            "forwards": True,
             "active": False
         }
     
     stripBrightness[pointer1]["active"] = True
-    #stripBrightness[pointer2]["active"] = True
+    stripBrightness[pointer2]["active"] = True
+    stripBrightness[pointer2]["forwards"] = False
 
     counter = 0
     animationComplete = False
     while True:
         if counter >= 30:
             animationComplete = True
-            
+
         counter += 1
         for i in range(len(stripBrightness)):
             if stripBrightness[i]["active"] and stripBrightness[i]["up"]:
@@ -174,8 +176,10 @@ def ballDown1(strip):
                     stripBrightness[i]["val"] = 1000
                     stripBrightness[i]["up"] = False
 
-                    if i < len(stripBrightness) - 1 and animationComplete == False:
+                    if i < len(stripBrightness) - 1 and animationComplete == False and stripBrightness[i]["forwards"]:
                         stripBrightness[i + 1]["active"] = True
+                    elif i > 1 and animationComplete == False and stripBrightness[i]["forwards"] == False:
+                        stripBrightness[i - 1]["active"] = True
 
             elif stripBrightness[i]["active"] and stripBrightness[i]["up"] == False:
                 stripBrightness[i]["val"] -= 50
