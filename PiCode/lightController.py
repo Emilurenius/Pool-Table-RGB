@@ -220,7 +220,7 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     while True:
-    ballDown1(strip)
-    time.sleep(0.5)
+        ballDown1(strip)
+        time.sleep(0.5)
 
     
