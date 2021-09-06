@@ -82,6 +82,7 @@ def colorBubbles(strip):
             color = Color(int(float(255) * float(stripBrightness[i + 1]["val"]) / 1000), int(float(255) * float(stripBrightness[i + 1]["val"]) / 1000), int(float(255) * float(stripBrightness[i + 1]["val"]) / 1000))
             strip.setPixelColor(i, color)
         strip.show()
+        time.sleep(wait_ms/1000.0)
 
 
     
