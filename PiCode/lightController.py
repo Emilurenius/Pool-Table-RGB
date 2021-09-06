@@ -77,6 +77,14 @@ def colorBubbles(strip):
         strip.show()
         time.sleep(wait_ms/1000.0)
 
+def LEDcounter(strip):
+    pointer1 = 0
+    pointer2 = strip.numPixels()
+    while True:
+        strip.setPixelColor(pointer1, Color(255,255,255))
+        strip.setPixelColor(pointer2, Color(255,255,255))
+
+
 if __name__ == '__main__':
     # Process arguments
     parser = argparse.ArgumentParser()
@@ -93,6 +101,6 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     while True:
-        colorBubbles(strip)
+        LEDcounter(strip)
 
     
