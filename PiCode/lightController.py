@@ -164,7 +164,7 @@ def ballDown1(strip):
     while True:
         if counter > 10:
             wait_ms += 10
-        elif counter == 15:
+        if counter == 15:
             break
         counter += 1
         for i in range(len(stripBrightness)):
