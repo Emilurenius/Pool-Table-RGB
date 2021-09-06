@@ -189,7 +189,7 @@ def ballDown1(strip, origin):
                             stripBrightness[0]["active"] = True
                         else:
                             stripBrightness[i + 1]["active"] = True
-                    elif i > 1 and animationComplete == False and stripBrightness[i]["forwards"] == False:
+                    elif i > 0 and animationComplete == False and stripBrightness[i]["forwards"] == False:
                         print(i)
                         stripBrightness[i - 1]["active"] = True
                         stripBrightness[i - 1]["forwards"] = False
