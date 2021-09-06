@@ -161,7 +161,7 @@ def ballDown1(strip):
     #stripBrightness[pointer2]["active"] = True
 
     while True:
-        wait_ms += 1
+        wait_ms += 10
         for i in range(len(stripBrightness)):
             if stripBrightness[i]["active"] and stripBrightness[i]["up"]:
                 stripBrightness[i]["val"] += 400
