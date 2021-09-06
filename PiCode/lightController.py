@@ -183,6 +183,6 @@ if __name__ == '__main__':
     if not args.clear:
         print('Use "-c" argument to clear LEDs on exit')
 
-    ballDown(strip)
+    ballDown1(strip)
 
     
