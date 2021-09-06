@@ -29,6 +29,8 @@ def colorBubbles(strip):
             "up": True,
             "active": False
         }
+
+    stripBrightness[1]["active"] = True
     
     while True:
         wait_ms = 50
