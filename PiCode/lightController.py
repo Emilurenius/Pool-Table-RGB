@@ -4,6 +4,8 @@
 import time, json, os, random, datetime, argparse, requests
 from rpi_ws281x import *
 
+serverAddress = "172.16.4.226:80"
+
 # LED strip configuration:
 LED_COUNT      = 100     # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
@@ -223,7 +225,9 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     while True:
-        ballDown1(strip, 60)
-        time.sleep(0.5)
+        ballsDown = requests.get(f"{serverAddress}/getBallsDown")
+        if "1" in ballsDown:
+            ballDown1(strip, 0)
+        time.sleep(0.1)
 
     
