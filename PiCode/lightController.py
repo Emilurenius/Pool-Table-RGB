@@ -97,7 +97,7 @@ def ballDown(strip):
             break
         else:
             print(diff(pointer1, pointer2))
-        time.sleep(0.05)
+        time.sleep(0.01)
         pointer1 += 1
         pointer2 -= 1
 
@@ -122,9 +122,9 @@ if __name__ == '__main__':
     repeats = 5
     while repeats > 0:
         solidColor(strip, Color(0, 0, 0))
-        time.sleep(0.5)
+        time.sleep(0.05)
         solidColor(strip, Color(255, 255, 255))
-        time.sleep(0.5)
+        time.sleep(0.05)
         repeats -= 1
 
     
