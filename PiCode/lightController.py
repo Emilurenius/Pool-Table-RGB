@@ -4,7 +4,7 @@
 import time, json, os, random, datetime, argparse, requests
 from rpi_ws281x import *
 
-serverAddress = "http://172.16.4.226/:80"
+serverAddress = "http://172.16.4.226:80"
 
 # LED strip configuration:
 LED_COUNT      = 100     # Number of LED pixels.
