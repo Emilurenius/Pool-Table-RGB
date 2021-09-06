@@ -191,6 +191,8 @@ def ballDown1(strip, origin):
                         else:
                             stripBrightness[i + 1]["active"] = True
                     elif i > 1 and animationComplete == False and stripBrightness[i]["forwards"] == False:
+                        if i >= strip.numPixels() - 1:
+                            stripBrightness[0]["active"] = True
                         stripBrightness[i - 1]["active"] = True
                         stripBrightness[i - 1]["forwards"] = False
 
