@@ -241,7 +241,7 @@ if __name__ == '__main__':
     while True:
         ballsDown = requests.get(f"{serverAddress}/getBallsDown").json()
 
-        for balls in ballsDown:
+        for ball in ballsDown:
             ballDown1(strip, holesPos[int(ball)])
         time.sleep(0.1)
 
