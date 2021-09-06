@@ -225,7 +225,7 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     while True:
-        ballsDown = requests.get(f"{serverAddress}/getBallsDown")
+        ballsDown = requests.get(f"{serverAddress}/getBallsDown").json()
         print(ballsDown)
         if "1" in ballsDown:
             ballDown1(strip, 0)
