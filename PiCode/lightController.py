@@ -165,7 +165,7 @@ def ballDown1(strip):
     while True:
         if counter >= 30:
             animationComplete = True
-            wait_ms == 10
+            wait_ms == 1
         elif counter > 10:
             wait_ms += 10
         counter += 1
