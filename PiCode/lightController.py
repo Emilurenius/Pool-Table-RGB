@@ -92,16 +92,14 @@ def ballDown(strip):
         strip.setPixelColor(pointer1, Color(255,255,255))
         strip.setPixelColor(pointer2, Color(255,255,255))
         strip.show()
-        print(pointer1, pointer2)
-        time.sleep(0.5)
-        pointer1 += 1
-        pointer2 -= 1
-
         if diff(pointer1, pointer2) < 1:
             print("Done")
             break
         else:
             print(diff(pointer1, pointer2))
+        time.sleep(0.5)
+        pointer1 += 1
+        pointer2 -= 1
 
 
 if __name__ == '__main__':
