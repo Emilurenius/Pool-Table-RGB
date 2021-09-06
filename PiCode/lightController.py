@@ -79,7 +79,7 @@ def colorBubbles(strip):
 
 def LEDcounter(strip):
     pointer1 = 0
-    pointer2 = strip.numPixels()
+    pointer2 = strip.numPixels() - 1
     while True:
         strip.setPixelColor(pointer1, Color(255,255,255))
         strip.setPixelColor(pointer2, Color(255,255,255))
