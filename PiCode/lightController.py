@@ -101,6 +101,13 @@ def ballDown(strip):
         pointer1 += 1
         pointer2 -= 1
 
+    repeats = 5
+    while repeats > 0:
+        solidColor(strip, Color(0, 0, 0))
+        time.sleep(0.3)
+        solidColor(strip, Color(255, 255, 255))
+        time.sleep(0.3)
+        repeats -= 1
 
 if __name__ == '__main__':
     # Process arguments
@@ -118,13 +125,5 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     ballDown(strip)
-
-    repeats = 5
-    while repeats > 0:
-        solidColor(strip, Color(0, 0, 0))
-        time.sleep(0.3)
-        solidColor(strip, Color(255, 255, 255))
-        time.sleep(0.3)
-        repeats -= 1
 
     
