@@ -78,11 +78,12 @@ def colorBubbles(strip):
         time.sleep(wait_ms/1000.0)
 
 def LEDcounter(strip):
-    pointer1 = 1
-    pointer2 = strip.numPixels() - 1
+    pointer1 = 0
+    pointer2 = strip.numPixels()
     while True:
-        strip.setPixelColor(5, Color(255,255,255))
+        strip.setPixelColor(pointer1, Color(255,255,255))
         strip.setPixelColor(pointer2, Color(255,255,255))
+        strip.show()
 
 
 if __name__ == '__main__':
