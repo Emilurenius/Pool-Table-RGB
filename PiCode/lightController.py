@@ -198,6 +198,7 @@ def ballDown1(strip, origin):
                 if i >= strip.numPixels() - 1 and stripBrightness[i]["forwards"]:
                     stripBrightness[0]["active"] = True
                 elif i >= strip.numPixels() - 1 and stripBrightness[i]["forwards"] == False:
+                    print("Looping backwards")
                     stripBrightness[strip.numPixels() - 1]["active"] = True
                     stripBrightness[strip.numPixels() - 1]["forwards"] = False
                     
