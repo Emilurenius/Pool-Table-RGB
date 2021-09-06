@@ -5,6 +5,7 @@ import time, json, os, random, datetime, argparse, requests
 from rpi_ws281x import *
 
 serverAddress = "http://172.16.4.226:80"
+holesPos = [90, 27, ,41 74]
 
 # LED strip configuration:
 LED_COUNT      = 100     # Number of LED pixels.
@@ -239,8 +240,9 @@ if __name__ == '__main__':
 
     while True:
         ballsDown = requests.get(f"{serverAddress}/getBallsDown").json()
-        if "1" in ballsDown:
-            ballDown1(strip, 90)
+
+        for balls in ballsDown:
+            ballDown1(strip, holesPos[int(ball)])
         time.sleep(0.1)
 
     
