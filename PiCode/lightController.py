@@ -14,6 +14,14 @@ LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
+def diff(num1, num2):
+    if num1 > num2:
+        diff = num1 - num2
+    else:
+        diff = num2 -num1
+
+    return diff
+
 def solidColor(strip, color):
     # Displays a single solid color untill told otherwise:
     for i in range(strip.numPixels()): # Assign color to every pixel
@@ -88,6 +96,10 @@ def ballDown(strip):
         time.sleep(0.5)
         pointer1 += 1
         pointer2 -= 1
+
+        if diff(pointer1, pointer2) < 1:
+            print("Done")
+            break
 
 
 if __name__ == '__main__':
