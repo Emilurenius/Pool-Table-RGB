@@ -145,7 +145,7 @@ def ballDown(strip):
     fadeColor(strip, [255,0,0])
 
 def ballDown1(strip):
-    pointer1 = 0
+    pointer1 = 1
     pointer2 = strip.numPixels() - 1
 
     stripBrightness = {}
