@@ -85,6 +85,10 @@ def LEDcounter(strip):
         strip.setPixelColor(pointer2, Color(255,255,255))
         strip.show()
 
+        pointer1 += 1
+        pointer2 -= 1
+        time.sleep(0.5)
+
 
 if __name__ == '__main__':
     # Process arguments
