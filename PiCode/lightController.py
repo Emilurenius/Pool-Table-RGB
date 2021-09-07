@@ -147,7 +147,7 @@ def ballDown(strip):
 
     fadeColor(strip, [255,0,0])
 
-def ballDown1(strip, origin):
+def ballDown1(strip, origin, backgroundColor):
     wait_ms = 10
     pointer1 = origin
     pointer2 = origin - 1
@@ -178,19 +178,20 @@ def ballDown1(strip, origin):
         counter += 1
 
         for i in range(len(stripBrightness)):
-            if stripBrightness[i]["active"] and stripBrightness[i]["up"]:
+
+            if stripBrightness[i]["active"] and stripBrightness[i]["up"]: # Fade up
                 stillActive = True
                 stripBrightness[i]["val"] += 400
                 if stripBrightness[i ]["val"] > 1000:
                     stripBrightness[i]["val"] = 1000
                     stripBrightness[i]["up"] = False
 
-                    if i < len(stripBrightness) - 1 and animationComplete == False and stripBrightness[i]["forwards"]:
+                    if i < len(stripBrightness) - 1 and animationComplete == False and stripBrightness[i]["forwards"]: # Activate next LED
                         if i >= strip.numPixels() - 1:
                             stripBrightness[0]["active"] = True
                         else:
                             stripBrightness[i + 1]["active"] = True
-                    elif i > 0 and animationComplete == False and stripBrightness[i]["forwards"] == False:
+                    elif i > 0 and animationComplete == False and stripBrightness[i]["forwards"] == False: # Activate next LED
                         print(i)
                         stripBrightness[i - 1]["active"] = True
                         stripBrightness[i - 1]["forwards"] = False
@@ -205,8 +206,8 @@ def ballDown1(strip, origin):
                     
                 stillActive = True
                 stripBrightness[i]["val"] -= 50
-                if stripBrightness[i ]["val"] < 0:
-                    stripBrightness[i]["val"] = 0
+                if stripBrightness[i ]["val"] < 100:
+                    stripBrightness[i]["val"] = 100
                     stripBrightness[i]["active"] = False
                     stripBrightness[i]["up"] = True
 
