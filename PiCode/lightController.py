@@ -158,7 +158,7 @@ def ballDown1(strip, origin):
     stripBrightness = {}
     for i in range(strip.numPixels()):
         stripBrightness[i] = {
-            "val": 0,
+            "val": 100,
             "up": True,
             "forwards": True,
             "active": False
