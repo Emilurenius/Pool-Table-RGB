@@ -213,8 +213,12 @@ def ballDown1(strip, origin):
 
 
 
-            color = Color(int(float(255) * float(stripBrightness[i]["val"]) / 1000), int(float(255) * float(stripBrightness[i]["val"]) / 1000), int(float(255) * float(stripBrightness[i]["val"]) / 1000))
-            strip.setPixelColor(i, color)
+            background = Color(int(float(255) * float(stripBrightness[i]["val"]) / 1000), int(float(0) * float(stripBrightness[i]["val"]) / 1000), int(float(0) * float(stripBrightness[i]["val"]) / 1000))
+            animationColor = Color(int(float(255) * float(stripBrightness[i]["val"]) / 1000), int(float(255) * float(stripBrightness[i]["val"]) / 1000), int(float(255) * float(stripBrightness[i]["val"]) / 1000))
+            if stripBrightness[i]["active"]:
+                strip.setPixelColor(i, animationColor)
+            else:
+                strip.setPixelColor(i, background)
         
         strip.show()
         if stillActive == False:
