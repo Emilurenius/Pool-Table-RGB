@@ -147,7 +147,7 @@ def ballDown(strip):
 
     fadeColor(strip, [255,0,0])
 
-def ballDown1(strip, origin, backgroundColor):
+def ballDown1(strip, origin):
     wait_ms = 10
     pointer1 = origin
     pointer2 = origin - 1
