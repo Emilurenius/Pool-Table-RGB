@@ -4,7 +4,7 @@
 import time, json, os, random, datetime, argparse, requests
 from rpi_ws281x import *
 
-serverAddress = "http://172.16.4.226:80"
+serverAddress = "http://localhost:3000"
 holesPos = [90, 11, 27, 41, 58, 74]
 
 # LED strip configuration:
