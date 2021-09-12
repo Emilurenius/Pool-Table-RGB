@@ -1,7 +1,7 @@
 import cv2, numpy as np
 
 print("Imported module")
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 print("Camera accessed\nStarting in:")
 cap.set(3,640)
 print("3")
