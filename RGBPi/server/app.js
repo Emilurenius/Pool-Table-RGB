@@ -37,6 +37,12 @@ app.use(cors()) // Making sure the browser can request more data after it is loa
 
 app.use(cors()) // Making sure the browser can request more data after it is loaded on the client computer.
 
+app.use("/static", express.static("public"))
+
+app.get("/", (req,res) => {
+    res.sendFile(path.join(__dirname, "/html/controlPanel.html"))
+})
+
 app.get("/ballDown", (req, res) => {
     const hole = req.query.hole
 
@@ -51,6 +57,7 @@ app.get("/getBallsDown", (req, res) => {
     res.send(ballsDown)
     ballsDown = []
 })
+
 
 
 app.listen(port, () => console.log(`Listening on ${port}`))
