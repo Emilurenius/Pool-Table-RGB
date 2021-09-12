@@ -13,9 +13,6 @@ print("1")
 
 while True:
     success, img = cap.read()
-    imgCanny = cv2.Canny(img,100,100)
-    imgDialation = cv2.dilate(imgCanny,kernel,iterations=1)
-    imgEroded = cv2.erode(imgDialation,kernel,iterations=1)
-    cv2.imshow("Video",imgEroded)
+    cv2.imshow("Video",img)
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
