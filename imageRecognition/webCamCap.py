@@ -1,5 +1,4 @@
 import cv2, numpy as np
-kernel = np.ones((5,5),np.uint8)
 
 print("Imported module")
 cap = cv2.VideoCapture(0)
