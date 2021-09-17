@@ -1,48 +1,41 @@
 import cv2, numpy as np
 
-def getContours(img):
-    contours,hierarchy = cv2.findContours(img,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
-    for cnt in contours:
-        area = cv2.contourArea(cnt)
-        #print(area)
-        if area > 500:
-            cv2.drawContours(imgContour,cnt,-1,(255,0,0),3)
-            peri = cv2.arcLength(cnt,True)
-            #print(peri)
-            approx = cv2.approxPolyDP(cnt,0.02*peri,True)
-            print(len(approx))
-            objCor = len(approx)
-            x,y,w,h = cv2.boundingRect(approx)
-
-            if objCor == 3: objectType = "Tri"
-            elif objCor == 4:
-                aspRatio = w/float(h)
-                if aspRatio > 0.95 and aspRatio < 1.05: objectType = "Square"
-                else:objectType = "Rectangle"
-            elif objCor > 4: objectType = "Circle"
-            else:objectType = "None"
-
-            cv2.rectangle(imgContour,(x,y),(x+w,y+h),(0,255,0),2)
-            cv2.putText(imgContour,objectType,
-                (x+(w//2)-10,y+(h//2)-10),cv2.FONT_HERSHEY_COMPLEX,0.5,
-                (0,0,0),2)
-
+def empty(a):
+    pass
 
 path = "poolTable.jpg"
-img = cv2.imread(path)
-h,w,d = img.shape
-print(w,h)
-imgContour = img.copy()
 
-imgGray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-imgBlur = cv2.GaussianBlur(imgGray,(7,7),1)
-imgCanny = cv2.Canny(imgBlur,50,50)
-getContours(imgCanny)
+cv2.namedWindow("TrackBars")
+cv2.resizeWindow("TrackBars",640,240)
+cv2.createTrackbar("Hue Min","TrackBars",0,179,empty)
+cv2.createTrackbar("Hue Max","TrackBars",19,179,empty)
+cv2.createTrackbar("Sat Min","TrackBars",110,255,empty)
+cv2.createTrackbar("Sat Max","TrackBars",240,255,empty)
+cv2.createTrackbar("Val Min","TrackBars",153,255,empty)
+cv2.createTrackbar("Val Max","TrackBars",255,255,empty)
 
-imgScaled = cv2.resize(imgCanny,(653,460))
-imgScaled1 = cv2.resize(imgContour,(653,460))
-cv2.imshow("Contours", imgScaled)
-cv2.waitKey(0)
-cv2.imshow("Contours", imgScaled1)
+while True:
+    img = cv2.imread(path)
 
-cv2.waitKey(0)
+    imgHSV = cv2.cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+    h_min = cv2.getTrackbarPos("Hue Min","TrackBars")
+    h_max = cv2.getTrackbarPos("Hue Max","TrackBars")
+    s_min = cv2.getTrackbarPos("Sat Min","TrackBars")
+    s_max = cv2.getTrackbarPos("Sat Max","TrackBars")
+    v_min = cv2.getTrackbarPos("Val Min","TrackBars")
+    v_max = cv2.getTrackbarPos("Val Max","TrackBars")
+    print(h_min,h_max,s_min,s_max,v_min,v_max)
+
+    lower = np.array([h_min,s_min,v_min])
+    upper = np.array([h_max,s_max,v_max])
+    mask = cv2.inRange(imgHSV,lower,upper)
+    imgResult = cv2.bitwise_and(img,img,mask=mask)
+
+    imgScaled = cv2.resize(imgResult,(653,460))
+
+    # cv2.imshow("Original",img)
+    # cv2.imshow("HSV",imgHSV)
+    # cv2.imshow("Mask",mask)
+    # cv2.imshow("Result",imgResult)
+    cv2.imshow("Result",imgScaled)
+    cv2.waitKey(1)
