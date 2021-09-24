@@ -10,5 +10,4 @@ while True:
 
     if (GPIO.input(16)):
         print("Ball detected!")
-        time.sleep(1)
         GPIO.output(12, True)
