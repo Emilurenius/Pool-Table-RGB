@@ -249,5 +249,7 @@ if __name__ == '__main__':
         for ball in ballsDown:
             ballDown1(strip, holesPos[int(ball)])
         time.sleep(0.1)
+else:
+    print(__name__)
 
     
