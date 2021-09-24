@@ -5,10 +5,10 @@ import time, json, os, random, datetime, argparse, requests
 from rpi_ws281x import *
 
 serverAddress = "http://localhost:3000"
-holesPos = [46, 84, 27, 117, 50, 50]
+holesPos = [20, 40, 80, 100, 120, 140]
 
 # LED strip configuration:
-LED_COUNT      = 100     # Number of LED pixels.
+LED_COUNT      = 144     # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
 #LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
 LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
