@@ -225,7 +225,6 @@ def ballDown1(strip, origin):
         time.sleep(wait_ms/1000)
 
 def animateHoles(strip, wait_ms=10, steps=30):
-    holeStates = [False, False, False, False, False, False]
 
     LEDdata = {}
     for i in range(strip.numPixels()):
