@@ -224,7 +224,7 @@ def ballDown1(strip, origin):
             break
         time.sleep(wait_ms/1000)
 
-def animateHoles(strip, wait_ms=10, steps=30):
+def animateHoles(strip, wait_ms=10, steps=10):
 
     LEDdata = {}
     for i in range(strip.numPixels()):
