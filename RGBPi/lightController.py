@@ -270,10 +270,12 @@ def animateHoles(strip, wait_ms=10, steps=30):
                         else:
                             LEDdata[i + 1]["active"] = True
                             LEDdata[i + 1]["step"] = LEDdata[i]["step"] + 1
+                        LEDdata[i]["step"] = 0
                     elif i > 0 and LEDdata[i]["forwards"] == False and LEDdata[i]["step"] < steps: # Activate next LED
                         LEDdata[i - 1]["active"] = True
                         LEDdata[i - 1]["forwards"] = False
                         LEDdata[i - 1]["step"] = LEDdata[i]["step"] + 1
+                        LEDdata[i]["step"] = 0
 
             elif LEDdata[i]["active"] and LEDdata[i]["up"] == False: # Fade down
                 if i >= strip.numPixels() - 1 and LEDdata[i]["forwards"]:
