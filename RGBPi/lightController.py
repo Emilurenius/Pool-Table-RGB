@@ -246,13 +246,13 @@ def animateHoles(strip, wait_ms=10, steps=30):
         i = 0
         for state in holeStates:
             if state:
-                LEDdata[i]["active"] = True
+                LEDdata[holesPos[i]]["active"] = True
                 if i <=0: # Make sure values are within range
                     LEDdata[strip.numPixels() - 1]["active"] = True
                     LEDdata[strip.numPixels() - 1]["forwards"] = False
                 else:
-                    LEDdata[i-1]["active"] = True
-                    LEDdata[i-1]["forwards"] = False
+                    LEDdata[holesPos[i]-1]["active"] = True
+                    LEDdata[holesPos[i]-1]["forwards"] = False
 
         for i in range(len(LEDdata)):
             if LEDdata[i]["active"] and LEDdata[i]["up"]: # Fade up
