@@ -239,6 +239,7 @@ def animateHoles(strip, wait_ms=10, steps=30):
 
     while True:
         ballsDown = requests.get(f"{serverAddress}/getBallsDown").json()
+        holeStates = [False, False, False, False, False, False]
 
         for ball in ballsDown:
             holeStates[int(ball)] = True
