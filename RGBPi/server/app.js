@@ -46,7 +46,7 @@ app.get("/", (req,res) => {
 app.get("/ballDown", (req, res) => {
     const hole = req.query.hole
 
-    if (hole >= 0 && hole < 6) {
+    if (hole >= 0 && hole < 6 && ballsDown.length < 6) {
         console.log(hole)
         ballsDown.push(hole)
     }
