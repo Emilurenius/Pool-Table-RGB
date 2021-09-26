@@ -238,65 +238,35 @@ def animateHoles(strip, wait_ms=10, steps=10):
 
     while True:
         ballsDown = requests.get(f"{serverAddress}/getBallsDown").json()
-        holeStates = [False, False, False, False, False, False]
 
         for ball in ballsDown:
-            holeStates[int(ball)] = True
+            LEDdata[int(ball)]["active"] = True
 
-        i = 0
-        for state in holeStates:
-            if state:
-                LEDdata[holesPos[i]]["active"] = True
-                if i <=0: # Make sure values are within range
-                    LEDdata[strip.numPixels() - 1]["active"] = True
-                    LEDdata[strip.numPixels() - 1]["forwards"] = False
-                else:
-                    LEDdata[holesPos[i]-1]["active"] = True
-                    LEDdata[holesPos[i]-1]["forwards"] = False
-            i += 1
+        for i in range(LEDdata):
 
-        for i in range(len(LEDdata)):
-            if LEDdata[i]["active"] and LEDdata[i]["up"]: # Fade up
-                LEDdata[i]["val"] += 400
-                if LEDdata[i ]["val"] > 1000:
-                    LEDdata[i]["val"] = 1000
-                    LEDdata[i]["up"] = False
+            if LEDdata[i]["active"] and LEDdata[i]["up"] and LEDdata[i]["val"] > 1000: # Activate next pixel in animation
+                LEDdata[i]["val"] = 1000
+                LEDdata[i]["up"] = False
 
-                    if i < len(LEDdata) - 1 and LEDdata[i]["forwards"] and LEDdata[i]["step"] < steps: # Activate next LED
-                        print(f"{i}: {LEDdata[i]['step']}")
-                        if i >= strip.numPixels() - 1:
-                            LEDdata[0]["active"] = True
-                            LEDdata[0]["step"] = LEDdata[i]["step"] + 1
-                        else:
-                            LEDdata[i + 1]["active"] = True
-                            LEDdata[i + 1]["step"] = LEDdata[i]["step"] + 1
-                        LEDdata[i]["step"] = 0
-                    elif i > 0 and LEDdata[i]["forwards"] == False and LEDdata[i]["step"] < steps: # Activate next LED
-                        LEDdata[i - 1]["active"] = True
-                        LEDdata[i - 1]["forwards"] = False
-                        LEDdata[i - 1]["step"] = LEDdata[i]["step"] + 1
-                        LEDdata[i]["step"] = 0
-
-            elif LEDdata[i]["active"] and LEDdata[i]["up"] == False: # Fade down
-                if i >= strip.numPixels() - 1 and LEDdata[i]["forwards"]:
+                if LEDdata[i]["forwards"] and i < len(LEDdata) - 1:
+                    LEDdata[i+1]["active"] = True
+                    LEDdata[i+1]["step"] = LEDdata[i]["step"] + 1
+                elif LEDdata[i]["forwards"]:
                     LEDdata[0]["active"] = True
-                elif i <= 1 and LEDdata[i]["forwards"] == False:
-                    print("Looping backwards")
-                    LEDdata[strip.numPixels() - 1]["active"] = True
-                    LEDdata[strip.numPixels() - 1]["forwards"] = False
-                    
-                LEDdata[i]["val"] -= 50
-                if LEDdata[i ]["val"] < 100: # Reset pixel
-                    LEDdata[i]["val"] = 100
-                    LEDdata[i]["active"] = False
-                    LEDdata[i]["up"] = True
+                    LEDdata[0]("step") = LEDdata[i]["step"] + 1
+            
+            elif LEDdata[i]["active"] and LEDdata[i]["up"] == False and LEDdata[i]["val"] < 101: # Reset pixel when it's done animating
+                LEDdata[i]["val"] = 100
+                LEDdata["step"] = 0
+                LEDdata["up"] = True
+                LEDdata["forwards"] = True
+                LEDdata["active"] = False
 
-            background = Color(int(float(255) * float(LEDdata[i]["val"]) / 1000), int(float(0) * float(LEDdata[i]["val"]) / 1000), int(float(0) * float(LEDdata[i]["val"]) / 1000))
-            animationColor = Color(int(float(255) * float(LEDdata[i]["val"]) / 1000), int(float(255) * float(LEDdata[i]["val"]) / 1000), int(float(255) * float(LEDdata[i]["val"]) / 1000))
-            if LEDdata[i]["active"]:
-                strip.setPixelColor(i, animationColor)
-            else:
-                strip.setPixelColor(i, background)
+            elif LEDdata[i]["active"] and LEDdata[i]["up"]: # Fade up active pixels
+                LEDdata[i]["val"] += 400
+
+            elif LEDdata[i]["active"] and LEDdata[i]["up"] == False: # Fade down active pixels
+                LEDdata[i]["val"] -= 50
         
         strip.show()
         time.sleep(wait_ms/1000)
