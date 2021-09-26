@@ -273,7 +273,6 @@ def animateHoles(strip, wait_ms=10, steps=10):
             if LEDdata[i]["active"]:
                 strip.setPixelColor(i, animationColor)
             else:
-                print(i)
                 strip.setPixelColor(i, background)
         
         strip.show()
