@@ -268,13 +268,13 @@ def animateHoles(strip, wait_ms=10, steps=10):
             elif LEDdata[i]["active"] and LEDdata[i]["up"] == False: # Fade down active pixels
                 LEDdata[i]["val"] -= 50
         
-        background = Color(int(float(255) * float(LEDdata[i]["val"]) / 1000), int(float(0) * float(LEDdata[i]["val"]) / 1000), int(float(0) * float(LEDdata[i]["val"]) / 1000))
-        animationColor = Color(int(float(255) * float(LEDdata[i]["val"]) / 1000), int(float(255) * float(LEDdata[i]["val"]) / 1000), int(float(255) * float(LEDdata[i]["val"]) / 1000))
-        if LEDdata[i]["active"]:
-            strip.setPixelColor(i, animationColor)
-        else:
-            print(i)
-            strip.setPixelColor(i, background)
+            background = Color(int(float(255) * float(LEDdata[i]["val"]) / 1000), int(float(0) * float(LEDdata[i]["val"]) / 1000), int(float(0) * float(LEDdata[i]["val"]) / 1000))
+            animationColor = Color(int(float(255) * float(LEDdata[i]["val"]) / 1000), int(float(255) * float(LEDdata[i]["val"]) / 1000), int(float(255) * float(LEDdata[i]["val"]) / 1000))
+            if LEDdata[i]["active"]:
+                strip.setPixelColor(i, animationColor)
+            else:
+                print(i)
+                strip.setPixelColor(i, background)
         
         strip.show()
         time.sleep(wait_ms/1000)
