@@ -253,7 +253,7 @@ def animateHoles(strip, wait_ms=10, steps=10):
                     LEDdata[i+1]["step"] = LEDdata[i]["step"] + 1
                 elif LEDdata[i]["forwards"]:
                     LEDdata[0]["active"] = True
-                    LEDdata[0]("step") = LEDdata[i]["step"] + 1
+                    LEDdata[0]["step"] = LEDdata[i]["step"] + 1
             
             elif LEDdata[i]["active"] and LEDdata[i]["up"] == False and LEDdata[i]["val"] < 101: # Reset pixel when it's done animating
                 LEDdata[i]["val"] = 100
