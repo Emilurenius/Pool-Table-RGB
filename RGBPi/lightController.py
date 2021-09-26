@@ -235,7 +235,6 @@ def animateHoles(strip, wait_ms=10, steps=10):
             "forwards": True,
             "active": False
         }
-    print(len(LEDdata))
 
     while True:
         ballsDown = requests.get(f"{serverAddress}/getBallsDown").json()
@@ -244,6 +243,7 @@ def animateHoles(strip, wait_ms=10, steps=10):
             LEDdata[int(ball)]["active"] = True
 
         for i in range(len(LEDdata) - 1):
+            print(i)
 
             if LEDdata[i]["active"] and LEDdata[i]["up"] and LEDdata[i]["val"] > 1000: # Activate next pixel in animation
                 LEDdata[i]["val"] = 1000
