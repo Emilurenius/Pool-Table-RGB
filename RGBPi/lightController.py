@@ -242,7 +242,7 @@ def animateHoles(strip, wait_ms=10, steps=10):
         for ball in ballsDown:
             LEDdata[int(ball)]["active"] = True
 
-        for i in range(LEDdata):
+        for i in range(len(LEDdata)):
 
             if LEDdata[i]["active"] and LEDdata[i]["up"] and LEDdata[i]["val"] > 1000: # Activate next pixel in animation
                 LEDdata[i]["val"] = 1000
