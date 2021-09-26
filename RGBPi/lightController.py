@@ -235,6 +235,7 @@ def animateHoles(strip, wait_ms=10, steps=10):
             "forwards": True,
             "active": False
         }
+    print(len(LEDdata))
 
     while True:
         ballsDown = requests.get(f"{serverAddress}/getBallsDown").json()
