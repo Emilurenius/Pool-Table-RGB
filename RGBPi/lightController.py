@@ -243,7 +243,6 @@ def animateHoles(strip, wait_ms=10, steps=10):
             LEDdata[int(ball)]["active"] = True
 
         for i in range(len(LEDdata)):
-            print(i)
 
             if LEDdata[i]["active"] and LEDdata[i]["up"] and LEDdata[i]["val"] > 1000: # Activate next pixel in animation
                 LEDdata[i]["val"] = 1000
@@ -274,6 +273,7 @@ def animateHoles(strip, wait_ms=10, steps=10):
         if LEDdata[i]["active"]:
             strip.setPixelColor(i, animationColor)
         else:
+            print(i)
             strip.setPixelColor(i, background)
         
         strip.show()
